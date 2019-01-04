@@ -18,15 +18,109 @@ body {
     font-size: 16px;
     line-height: 1.7;
     color: #777;
+    padding: 30px; /*adds a nice border around the entire website*/
 }
 
 .header {
     height: 95vh; /*at every point, this height should be 95 percent of the view port*/
-    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 131, 0.8)), url(../img/hero.jpg); 
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(126, 213, 111, 0.8), 
+        rgba(40, 180, 131, 0.8)), 
+        url(../img/hero.jpg); 
     /*  if we want a gradient on top, put that in front of the url. 
         here there are two background images on top of each other.
         "to right bottom" also tells the gradient what side to gradient on
     */
     background-size: cover; /*tries to fit the image into the viewport*/
     background-position: top; /*ensures that no matter what the viewport size, the top of the image stays at the top of the container*/
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
+    position: relative;
+    /*this is what makes the little wedge disappear so that the image seems angled
+        specifies which the coordinates (clockwise) of where you want to be able to SEE the image
+        use bennettfeely.com/clippy to get these dimensions
+    */
+}
+
+.logo-box{
+    position: absolute;
+    top: 40px; /*starts from the parent element, which in this case is the header element, so header element must have position set to relative*/
+    left: 40px;
+}
+
+.logo {
+    height: 35px;
+}
+
+.text-box{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%); /*this makes the relation not to the parent element but to the element itself*/
+}
+.heading-primary{
+    color: #fff;
+    text-transform: uppercase;
+}
+.heading-primary-main {
+    /*block elements occupy the entire width that they have available and create line breaks after and before them but a span is an inline element*/
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    letter-spacing: 35px;
+    animation-name: moveInLeft; /*these two properties specify which animation gets applied and how long it is applied for*/
+    animation-duration: 1s;
+    animation-timing-function: ease-out; /*start the animation slower then go faster*/
+    /*animation-iteration-count: 3; /*how many times the animation should happen*/
+    /*animation-delay: 3s;*/
+    backface-visibility: hidden; /*eliminates the slight shake that happens in the animations contained in this, also hides the back of the element*/
+}
+.heading-primary-sub {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 17.4px;
+    animation: moveInRight 1s ease-out; /*short hand for the properties we applied in heading-primary-main*/
+}
+@keyframes moveInLeft{ /*don't forget to apply the animation-name and duration properties in the element's selectors*/
+    0% { /*before the animation begins*/
+         opacity: 0;
+         transform: translateX(-100px);
+    }
+    80% { 
+        transform: translateX(10px);
+    }
+
+    100% { /*at the animation's end*/
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+@keyframes moveInRight { /*don't forget to apply the animation-name and duration properties in the element's selectors*/
+    0% { /*before the animation begins*/
+        opacity: 0;
+        transform: translateX(100px); /*rotate(180deg)*/
+    }
+
+    80% {
+        transform: translateX(-10px);
+    }
+
+    100% { /*at the animation's end*/
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.btn:link, 
+.btn:visited { /*the link pseudo class is used to style under a specific condition*/
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px; /*top botton, left right*/
+    display: inline-block; /*the anchor element is an inline-element by default, need it to be inline-block*/
+}
+
+.btn-white {
+    background-color: #fff;
+    color: #777;
 }
