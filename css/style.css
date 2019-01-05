@@ -57,10 +57,13 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%); /*this makes the relation not to the parent element but to the element itself*/
+    text-align: center;
 }
-.heading-primary{
+.heading-primary {
     color: #fff;
     text-transform: uppercase;
+    backface-visibility: hidden; /*eliminates the slight shake that happens in the animations contained in this, also hides the back of the element*/
+    margin-bottom: 60px;
 }
 .heading-primary-main {
     /*block elements occupy the entire width that they have available and create line breaks after and before them but a span is an inline element*/
@@ -73,7 +76,6 @@ body {
     animation-timing-function: ease-out; /*start the animation slower then go faster*/
     /*animation-iteration-count: 3; /*how many times the animation should happen*/
     /*animation-delay: 3s;*/
-    backface-visibility: hidden; /*eliminates the slight shake that happens in the animations contained in this, also hides the back of the element*/
 }
 .heading-primary-sub {
     display: block;
@@ -112,15 +114,60 @@ body {
     }
 }
 
-.btn:link, 
+@keyframes moveInButton { /*don't forget to apply the animation-name and duration properties in the element's selectors*/
+    0% { /*before the animation begins*/
+        opacity: 0;
+        transform: translateY(30px); /*rotate(180deg)*/
+    }
+
+    100% { /*at the animation's end*/
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+.btn:link,
 .btn:visited { /*the link pseudo class is used to style under a specific condition*/
     text-transform: uppercase;
     text-decoration: none;
     padding: 15px 40px; /*top botton, left right*/
     display: inline-block; /*the anchor element is an inline-element by default, need it to be inline-block*/
+    border-radius: 100px;
+    transition: all .2s; /*the more shorthand version of creating an animation*/
+    position: relative;
 }
 
+.btn:hover { /*when your mouse hovers over it*/
+    transform: translateY(-3px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, .2); /*x, y, blur-radius, color*/
+}
+.btn:active { /*this is the state of when something is clicked*/
+    transform: translateY(1px);
+}
 .btn-white {
     background-color: #fff;
     color: #777;
+}
+.btn::after {
+    content: "";
+    display: inline-block; /*we want the settings on this to match the settings of the element we are setting it for so inherit all the properties*/
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute; /*since we want this to sit behind the button, we set btn:link/visited to relative*/
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+.btn-white::after {
+    background-color: white;
+}
+
+.btn:hover::after {
+    transform: scale(1.5); /*changes the size to double the size it was before*/
+    opacity: 0;
+}
+.btn-animated {
+    animation: moveInButton .5s ease-out .75s; /* name duration timing-function delay*/
+    animation-fill-mode: backwards;
 }
