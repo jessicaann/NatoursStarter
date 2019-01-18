@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\css"
+    "\\css",
+    "\\sass",
+    "\\sass\\abstracts",
+    "\\sass\\base",
+    "\\sass\\components",
+    "\\sass\\layout"
   ],
-  "SelectedNode": "\\index.html",
+  "SelectedNode": "\\sass\\base\\_typography.scss",
   "PreviewInSolutionExplorer": false
 }

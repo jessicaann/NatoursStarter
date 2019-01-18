@@ -1,0 +1,27 @@
+.heading-primary {
+    color: $color-white;
+    text-transform: uppercase;
+    backface-visibility: hidden; /*eliminates the slight shake that happens in the animations contained in this, also hides the back of the element*/
+    margin-bottom: 6rem;
+
+    &--main {
+        /*block elements occupy the entire width that they have available and create line breaks after and before them but a span is an inline element*/
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+        animation-name: moveInLeft; /*these two properties specify which animation gets applied and how long it is applied for*/
+        animation-duration: 1s;
+        animation-timing-function: ease-out; /*start the animation slower then go faster*/
+        /*animation-iteration-count: 3; /*how many times the animation should happen*/
+        /*animation-delay: 3s;*/
+    }
+
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        animation: moveInRight 1s ease-out; /*short hand for the properties we applied in heading-primary-main*/
+    }
+}

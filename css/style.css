@@ -1,173 +1,169 @@
-/*
-COLORS:
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
 
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-
-*/
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+html {
+  font-size: 62.5%; }
 
 body {
-    font-family: "Lato", sans-serif;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /*font-size: 16px;*/
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem;
+  /*adds a nice border around the entire website*/
+  box-sizing: border-box; }
+
+@keyframes moveInLeft {
+  /*don't forget to apply the animation-name and duration properties in the element's selectors*/
+  0% {
+    /*before the animation begins*/
+    opacity: 0;
+    transform: translateX(-10rem); }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    /*at the animation's end*/
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  /*don't forget to apply the animation-name and duration properties in the element's selectors*/
+  0% {
+    /*before the animation begins*/
+    opacity: 0;
+    transform: translateX(10rem);
+    /*rotate(180deg)*/ }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    /*at the animation's end*/
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInButton {
+  /*don't forget to apply the animation-name and duration properties in the element's selectors*/
+  0% {
+    /*before the animation begins*/
+    opacity: 0;
+    transform: translateY(3rem);
+    /*rotate(180deg)*/ }
+  100% {
+    /*at the animation's end*/
+    opacity: 1;
+    transform: translate(0); } }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /*eliminates the slight shake that happens in the animations contained in this, also hides the back of the element*/
+  margin-bottom: 6rem; }
+  .heading-primary--main {
+    /*block elements occupy the entire width that they have available and create line breaks after and before them but a span is an inline element*/
+    display: block;
+    font-size: 6rem;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 1.7;
-    color: #777;
-    padding: 30px; /*adds a nice border around the entire website*/
-}
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    /*these two properties specify which animation gets applied and how long it is applied for*/
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    /*start the animation slower then go faster*/
+    /*animation-iteration-count: 3; /*how many times the animation should happen*/
+    /*animation-delay: 3s;*/ }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1s ease-out;
+    /*short hand for the properties we applied in heading-primary-main*/ }
 
 .header {
-    height: 95vh; /*at every point, this height should be 95 percent of the view port*/
-    background-image: linear-gradient(
-        to right bottom,
-        rgba(126, 213, 111, 0.8), 
-        rgba(40, 180, 131, 0.8)), 
-        url(../img/hero.jpg); 
-    /*  if we want a gradient on top, put that in front of the url. 
+  height: 95vh;
+  /*at every point, this height should be 95 percent of the view port*/
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  /*  if we want a gradient on top, put that in front of the url. 
         here there are two background images on top of each other.
         "to right bottom" also tells the gradient what side to gradient on
     */
-    background-size: cover; /*tries to fit the image into the viewport*/
-    background-position: top; /*ensures that no matter what the viewport size, the top of the image stays at the top of the container*/
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); 
-    position: relative;
-    /*this is what makes the little wedge disappear so that the image seems angled
+  background-size: cover;
+  /*tries to fit the image into the viewport*/
+  background-position: top;
+  /*ensures that no matter what the viewport size, the top of the image stays at the top of the container*/
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+  /*this is what makes the little wedge disappear so that the image seems angled
         specifies which the coordinates (clockwise) of where you want to be able to SEE the image
         use bennettfeely.com/clippy to get these dimensions
-    */
-}
-
-.logo-box{
+    */ }
+  .header__logo-box {
     position: absolute;
-    top: 40px; /*starts from the parent element, which in this case is the header element, so header element must have position set to relative*/
-    left: 40px;
-}
-
-.logo {
-    height: 35px;
-}
-
-.text-box{
+    top: 4rem;
+    /*starts from the parent element, which in this case is the header element, so header element must have position set to relative*/
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__text-box {
     position: absolute;
     top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%); /*this makes the relation not to the parent element but to the element itself*/
-    text-align: center;
-}
-.heading-primary {
-    color: #fff;
-    text-transform: uppercase;
-    backface-visibility: hidden; /*eliminates the slight shake that happens in the animations contained in this, also hides the back of the element*/
-    margin-bottom: 60px;
-}
-.heading-primary-main {
-    /*block elements occupy the entire width that they have available and create line breaks after and before them but a span is an inline element*/
-    display: block;
-    font-size: 60px;
-    font-weight: 400;
-    letter-spacing: 35px;
-    animation-name: moveInLeft; /*these two properties specify which animation gets applied and how long it is applied for*/
-    animation-duration: 1s;
-    animation-timing-function: ease-out; /*start the animation slower then go faster*/
-    /*animation-iteration-count: 3; /*how many times the animation should happen*/
-    /*animation-delay: 3s;*/
-}
-.heading-primary-sub {
-    display: block;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 17.4px;
-    animation: moveInRight 1s ease-out; /*short hand for the properties we applied in heading-primary-main*/
-}
-@keyframes moveInLeft{ /*don't forget to apply the animation-name and duration properties in the element's selectors*/
-    0% { /*before the animation begins*/
-         opacity: 0;
-         transform: translateX(-100px);
-    }
-    80% { 
-        transform: translateX(10px);
-    }
+    transform: translate(-50%, -50%);
+    /*this makes the relation not to the parent element but to the element itself*/
+    text-align: center; }
 
-    100% { /*at the animation's end*/
-        opacity: 1;
-        transform: translate(0);
-    }
-}
-@keyframes moveInRight { /*don't forget to apply the animation-name and duration properties in the element's selectors*/
-    0% { /*before the animation begins*/
-        opacity: 0;
-        transform: translateX(100px); /*rotate(180deg)*/
-    }
+.btn:link, .btn:visited {
+  /*the link pseudo class is used to style under a specific condition*/
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  /*top botton, left right*/
+  display: inline-block;
+  /*the anchor element is an inline-element by default, need it to be inline-block*/
+  border-radius: 10rem;
+  transition: all .2s;
+  /*the more shorthand version of creating an animation*/
+  position: relative;
+  font-size: 16px; }
 
-    80% {
-        transform: translateX(-10px);
-    }
+.btn:hover {
+  /*when your mouse hovers over it*/
+  transform: translateY(-3px);
+  box-shadow: 0px 1rem 2rem rgba(0, 0, 0, 0.2);
+  /*x, y, blur-radius, color*/ }
+  .btn:hover::after {
+    transform: scale(1.5);
+    /*changes the size to double the size it was before*/
+    opacity: 0; }
 
-    100% { /*at the animation's end*/
-        opacity: 1;
-        transform: translate(0);
-    }
-}
+.btn:active {
+  /*this is the state of when something is clicked*/
+  transform: translateY(0.1rem); }
 
-@keyframes moveInButton { /*don't forget to apply the animation-name and duration properties in the element's selectors*/
-    0% { /*before the animation begins*/
-        opacity: 0;
-        transform: translateY(30px); /*rotate(180deg)*/
-    }
+.btn--white {
+  background-color: #fff;
+  color: #777; }
+  .btn--white::after {
+    background-color: #fff; }
 
-    100% { /*at the animation's end*/
-        opacity: 1;
-        transform: translate(0);
-    }
-}
-.btn:link,
-.btn:visited { /*the link pseudo class is used to style under a specific condition*/
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 15px 40px; /*top botton, left right*/
-    display: inline-block; /*the anchor element is an inline-element by default, need it to be inline-block*/
-    border-radius: 100px;
-    transition: all .2s; /*the more shorthand version of creating an animation*/
-    position: relative;
-}
-
-.btn:hover { /*when your mouse hovers over it*/
-    transform: translateY(-3px);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, .2); /*x, y, blur-radius, color*/
-}
-.btn:active { /*this is the state of when something is clicked*/
-    transform: translateY(1px);
-}
-.btn-white {
-    background-color: #fff;
-    color: #777;
-}
 .btn::after {
-    content: "";
-    display: inline-block; /*we want the settings on this to match the settings of the element we are setting it for so inherit all the properties*/
-    height: 100%;
-    width: 100%;
-    border-radius: 100px;
-    position: absolute; /*since we want this to sit behind the button, we set btn:link/visited to relative*/
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all .4s;
-}
-.btn-white::after {
-    background-color: white;
-}
+  content: "";
+  display: inline-block;
+  /*we want the settings on this to match the settings of the element we are setting it for so inherit all the properties*/
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  /*since we want this to sit behind the button, we set btn:link/visited to relative*/
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all .4s; }
 
-.btn:hover::after {
-    transform: scale(1.5); /*changes the size to double the size it was before*/
-    opacity: 0;
-}
-.btn-animated {
-    animation: moveInButton .5s ease-out .75s; /* name duration timing-function delay*/
-    animation-fill-mode: backwards;
-}
+.btn--animated {
+  animation: moveInButton .5s ease-out .75s;
+  /* name duration timing-function delay*/
+  animation-fill-mode: backwards; }
